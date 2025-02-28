@@ -1,0 +1,23 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+struct ListNode* removeElements(struct ListNode* head, int val) { /*head -> pointer val -> value*/
+        struct ListNode prev; //dummy node
+        prev.next = head; //points to head and makes it so there is something before the head of the list 
+        struct ListNode* current = &prev; //current is the address to prev, will traverse the list
+
+        while(current->next!=NULL){//loops to the end of the list until we hit null
+            if(current->next->val == val){//checks if the next node value equals the target value
+                current->next = current->next->next; //unlink this node by connecting to the next node "skipping"
+            }
+                else{
+                current = current->next; //if the val wasnt matched then go to the next node in the list
+                }
+
+        }
+    return prev.next; //returns head of the updated list
+}
